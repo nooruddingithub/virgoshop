@@ -257,5 +257,6 @@ main .section.highlight {
 }
 
 body {
+  color: pink;
   background-color: red;
 }
