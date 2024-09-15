@@ -1,0 +1,104 @@
+/* start tile style */
+.tile {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  transition: all 0.4s ease;
+  column-gap: 0;
+  grid-row-gap: 30px;
+}
+
+.tile>* {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  grid-column: span 12 / auto;
+  background-color: var(--tilebg-color);
+  border: solid 1px var(--tileborder-color);
+}
+
+.tile>*>div:nth-child(1) {
+  overflow: hidden;
+  min-height: 230px;
+}
+
+.tile>*>div:nth-child(2) {
+  height: 100%;
+}
+
+.tile>*>div img {
+  object-fit: cover;
+  transform: scale(1);
+  transition: all 0.4s ease;
+  width: 100%;
+  height: 230px;
+}
+
+.tile>*:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.tile>*:hover img {
+  transform: scale(1.3);
+}
+
+.tile>*>div+div {
+  padding: 15px;
+}
+
+.tile>* p {
+  margin-top: 0;
+  font-size: 16px;
+  color: var(--gray-color);
+}
+
+.tile>* p:first-child {
+  margin-top: 0;
+  color: var(--black-color);
+  font-size: 20px;
+}
+
+.tile>*>div+div.button-container {
+  padding: 0 16px;
+}
+
+.tile>*>div+div.button-container p {
+  margin: 0;
+}
+
+.tile-container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: var(--tilesbgwrapper-color);
+}
+
+@media (min-width: 768px) {
+  .tile {
+    column-gap: 30px;
+    grid-row-gap: 30px;
+  }
+
+  .tile>* {
+    grid-column: span 6 / auto;
+  }
+
+  .tile-container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+
+@media (min-width: 992px) {
+  .tile.two>* {
+    grid-column: span 6 / auto;
+  }
+
+  .tile.three>* {
+    grid-column: span 4 / auto;
+  }
+
+  .tile.four>* {
+    grid-column: span 3 / auto;
+  }
+}

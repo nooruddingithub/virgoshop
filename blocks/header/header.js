@@ -1,5 +1,9 @@
-import { getMetadata } from '../../scripts/aem.js';
-import { loadFragment } from '../fragment/fragment.js';
+import {
+  getMetadata
+} from '../../scripts/aem.js';
+import {
+  loadFragment
+} from '../fragment/fragment.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -150,8 +154,8 @@ export default async function decorate(block) {
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');
   hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
-      <span class="nav-hamburger-icon"></span>
-    </button>`;
+<span class="nav-hamburger-icon"></span>
+</button>`;
   hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
   nav.prepend(hamburger);
   nav.setAttribute('aria-expanded', 'false');
@@ -163,4 +167,46 @@ export default async function decorate(block) {
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+
+  // start share functionality.
+  for (const shareLinks of document.querySelectorAll(".nav-tools ul>li>ul>li")) {
+    let shareLnk = shareLinks.querySelectorAll("img");
+    shareLnk.forEach(ele => {
+      ele.addEventListener('click', function(e) {
+        e.preventDefault();
+        var toRedirect = social_link(this.getAttribute("data-icon-name"));
+        window.open(toRedirect, '_blank');
+        // shareClose();
+      });
+    });
+  }
+
+  function social_link(link) {
+    var url;
+    switch (link) {
+      case "facebook":
+        url = 'https://www.facebook.com/sharer.php?u=' + document.location.href;
+        break;
+      case "twitter":
+        url = 'https://twitter.com/share?url=' + document.location.href;
+        break;
+      case "linkedin":
+        url = 'https://www.linkedin.com/shareArticle?url=' + document.location.href;
+        break;
+      case "email":
+        var subject = document.title;
+        var body = window.location.href;
+        var uri = "mailto:?subject=";
+        uri += encodeURIComponent(subject);
+        uri += "&body=";
+        uri += encodeURIComponent(body);
+        url = uri;
+        break;
+      default:
+        break;
+    }
+    return url;
+  }
+  // end share functionality.
+
 }
