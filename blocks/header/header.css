@@ -323,8 +323,8 @@ header nav .nav-tools {
   list-style: none;
   display: flex;
   min-width: fit-content;
-  padding: 10px 20px;
-  column-gap: 30px;
+  padding: 10px;
+  column-gap: 15px;
   position: absolute;
   top: 100%;
   right: 0;

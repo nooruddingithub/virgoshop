@@ -193,6 +193,9 @@ export default async function decorate(block) {
       case "linkedin":
         url = 'https://www.linkedin.com/shareArticle?url=' + document.location.href;
         break;
+      case "instagram":
+        url = 'https://www.instagram.com/shareArticle?url=' + document.location.href;
+        break;
       case "email":
         var subject = document.title;
         var body = window.location.href;
